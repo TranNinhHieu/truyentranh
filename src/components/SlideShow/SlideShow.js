@@ -1,7 +1,7 @@
 import React,  {useEffect, useState, useRef, Fragment,  } from 'react'
 
 import './SlideShow.scss'
-import {SlideShowData} from '../../utils/fakeData'
+import {SlideShowData} from '../../utils/SlideShowData'
 
 function SlideShow(){
     const [currentSlide, setCurrentSlide] = useState(1)

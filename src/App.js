@@ -1,15 +1,22 @@
-import {useState} from 'react'
-import Content from './Content.js'
-import TabBar from './components/TabBar/TabBar.js'
-import SlideShow from './components/SlideShow/SlideShow.js'
-import './App.scss'
+import classNames from 'classnames/bind'
+
+import Content from '~/components/Content'
+import TabBar from '~/components/TabBar/TabBar.js'
+import SlideShow from '~/components/SlideShow/SlideShow.js'
+import Footer from '~/components/Footer/Footer.js'
+import styles from './App.module.scss'
+
+const cx = classNames.bind(styles)
+
 function App() {
  
 
   return (
-    <div className="container">
+    <div className={cx('wrapper')}>
       <TabBar/>
       <SlideShow/>
+      <Content/>
+      <Footer/>
     </div>
   );
 }
