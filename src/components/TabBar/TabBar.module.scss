@@ -1,0 +1,114 @@
+.tab-bar {
+}
+.top-bar {
+    margin: 10px;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &-left {
+        display: flex;
+        height: 100%;
+    }
+}
+
+.logo-image {
+    margin-right: 1;
+    height: 100%;
+    width: 50px;
+    border-radius: 25px;
+    cursor: pointer;
+}
+.search {
+    width: 400px;
+    height: 100%;
+    position: relative;
+
+    &-input {
+        width: 100%;
+        height: calc(100% - 2px);
+        border-radius: 25px;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+        border: 1px solid var(--black);
+        &:focus {
+            background-color: var(--bluesky);
+        }
+    }
+
+    &-icon {
+        position: absolute;
+        right: -1px;
+        // top: 1px;
+        font-size: 1.4rem;
+        width: 50px;
+        height: 48px;
+        border-radius: 0 25px 25px 0;
+        // border: 0;
+        outline: none;
+        background: #e8d2b2;
+        cursor: pointer;
+    }
+}
+.avatar {
+    height: 100%;
+    width: 50px;
+    border-radius: 25px;
+}
+
+.nav-bar {
+    display: flex;
+    background-color: var(--orangeC);
+    height: 60px;
+    &-item {
+        padding: 0 20px;
+        display: flex;
+        align-items: center;
+        height: 100%;
+        cursor: pointer;
+
+        &:hover {
+            color: rgb(107, 142, 35);
+            background-color: rgba(255, 255, 255, 0.381);
+        }
+    }
+}
+
+.dropdown {
+    position: relative;
+
+    &-content {
+        display: none;
+        position: absolute;
+        left: 0;
+        top: 100%;
+        width: 600px;
+        z-index: 1;
+        background-color: #fff;
+        box-shadow: 2px 2px 4px #696868;
+    }
+    &-item {
+        width: 25%;
+        padding: 10px;
+        text-align: center;
+        a {
+            color: var(--black);
+        }
+
+        &:hover {
+            a {
+                color: var(--orangeC);
+            }
+            background-color: var(--bluesky);
+        }
+    }
+
+    &:hover {
+        .dropdown-content {
+            display: flex;
+            flex-wrap: wrap;
+        }
+    }
+}

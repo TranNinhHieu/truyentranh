@@ -1,0 +1,29 @@
+@import 'normalize.css';
+
+:root {
+    --standard: 10px;
+    --orangeC: #f18121;
+    --black: #000;
+    --bluesky: rgba(132, 239, 237, 0.381);
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-size: 1.6rem;
+    line-height: 1.5;
+    text-rendering: optimizeSpeed;
+}
+
+a {
+    text-decoration: none;
+}
