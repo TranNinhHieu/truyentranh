@@ -1,5 +1,5 @@
 .wrapper {
-    width: 75%;
+    width: 65%;
     padding: 20px 10px;
     display: flex;
     flex-wrap: wrap;
@@ -9,4 +9,34 @@
     width: 25%;
     padding: 0 15px;
     margin-bottom: 20px;
+}
+.container-page {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    flex-wrap: wrap;
+    .page {
+        margin: 10px;
+        height: 30px;
+        width: 30px;
+        cursor: pointer;
+        background-color: #ebebeb;
+        border-radius: 15px;
+        padding: 2px;
+        border: none;
+        &:hover {
+            border: 3px solid rgb(239, 141, 81);
+        }
+    }
+    .active {
+        background-color: var(--orangeC);
+        // margin: 10px;
+        // height: 30px;
+        // width: 30px;
+        // cursor: pointer;
+        // border-radius: 15px;
+        // padding: 2px;
+        // border: none;
+    }
 }

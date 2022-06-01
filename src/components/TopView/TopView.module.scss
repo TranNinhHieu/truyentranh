@@ -1,0 +1,35 @@
+.wrapper {
+    width: 30%;
+    padding: 20px 10px;
+    flex-wrap: wrap;
+    background-color: #ebebeb;
+    border: 1px solid rgb(141, 234, 249);
+    border-radius: 25px;
+    margin-bottom: 10px;
+}
+.container-button {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    padding: 0 20px;
+    height: auto;
+
+    .top-view {
+        width: 50%;
+        background-color: aliceblue;
+        border: 1px solid var(--orangeC);
+        cursor: pointer;
+    }
+    .active {
+        background-color: var(--orangeC);
+    }
+    .new-updated {
+        width: 50%;
+        background-color: rgb(40, 84, 123);
+        cursor: pointer;
+    }
+}
+
+.list-comic {
+    padding: 10px 0 0 0;
+}
