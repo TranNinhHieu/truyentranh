@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { Fragment } from 'react'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from 'classnames/bind'
@@ -37,11 +37,11 @@ function TabBar() {
                     <span>Thể loại</span>
                     <div className={cx('dropdown-content')}>
                         {TagData.map((item) => (
-                            <div className={cx('dropdown-item')}>
-                                <a href="#" key={item._id.$oid}>
-                                    {item.name}
-                                </a>
-                            </div>
+                            <Fragment key={item._id.$oid}>
+                                <div className={cx('dropdown-item')}>
+                                    <a href="#">{item.name}</a>
+                                </div>
+                            </Fragment>
                         ))}
                     </div>
                 </div>

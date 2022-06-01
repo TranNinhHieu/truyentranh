@@ -1,23 +1,31 @@
-.commic {
-    &-image{
-    background-color: rgb(193, 156, 156);
-    width: 100%;
-    padding-top: calc(3/2 * 100%);
-    position: relative;
-
-    img {
-        position: absolute;
-        top: 0;
-        left: 0;
+.comic {
+    &-image {
+        // background-color: rgb(193, 156, 156);
         width: 100%;
-        height: 100%;
-        // object-fit: cover;
+        padding-top: calc(3 / 2 * 100%);
+        position: relative;
+
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            // object-fit: cover;
+            border: 1px solid #000;
+            border-radius: 20px;
+            cursor: pointer;
+            &:hover {
+                border: 3px solid rgb(234, 223, 223);
+            }
+        }
     }
+
+    &-title {
+        text-align: center;
+        cursor: pointer;
+        &:hover {
+            color: rgb(239, 141, 81);
+        }
     }
-
-    &-title {text-align: center;}
-
-
-
-
 }
