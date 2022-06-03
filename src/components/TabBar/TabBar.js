@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import React, { Fragment } from 'react'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -13,10 +14,13 @@ function TabBar() {
         <div className={cx('tab-bar')}>
             <div className={cx('top-bar')}>
                 <div className={cx('top-bar-left')}>
-                    <img
-                        className={cx('logo-image')}
-                        src="https://firebasestorage.googleapis.com/v0/b/abca-efb7d.appspot.com/o/logovip.jpg?alt=media&token=59c9f186-5e3f-45ab-991e-fade6d9514b4"
-                    />
+                    <Link to="/" alt="Home">
+                        <img
+                            className={cx('logo-image')}
+                            src="https://firebasestorage.googleapis.com/v0/b/abca-efb7d.appspot.com/o/logovip.jpg?alt=media&token=59c9f186-5e3f-45ab-991e-fade6d9514b4"
+                            alt="anh"
+                        />
+                    </Link>
                     <div className={cx('search')}>
                         <input className={cx('search-input')} placeholder="Bạn muốn tìm gì" />
                         <button className={cx('search-icon')}>
@@ -28,18 +32,23 @@ function TabBar() {
                     <img
                         className={cx('avatar')}
                         src="http://avatar.truyenvua.com/160x160/avatar_1649716632.jpg?r=r8645456"
+                        alt="anh"
                     />
                 </div>
             </div>
             <div className={cx('nav-bar')}>
-                <div className={cx('nav-bar-item')}>Trang chủ</div>
+                <Link to="/" alt="Home">
+                    <div className={cx('nav-bar-item')}>Trang chủ</div>
+                </Link>
                 <div className={cx('nav-bar-item', 'dropdown')}>
                     <span>Thể loại</span>
                     <div className={cx('dropdown-content')}>
                         {TagData.map((item) => (
                             <Fragment key={item._id.$oid}>
                                 <div className={cx('dropdown-item')}>
-                                    <a href="#">{item.name}</a>
+                                    <Link to="/" alt="Home">
+                                        {item.name}
+                                    </Link>
                                 </div>
                             </Fragment>
                         ))}

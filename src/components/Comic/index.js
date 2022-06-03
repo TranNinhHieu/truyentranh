@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import React from 'react'
 import classNames from 'classnames/bind'
 
@@ -7,12 +8,14 @@ const cx = classNames.bind(styles)
 
 function Comic({ item }) {
     return (
-        <div className={cx('wrapper')}>
-            <div className={cx('comic-image')}>
-                <img src={item.thumbnail} alt="anh" />
+        <Link to={item._id.$oid}>
+            <div className={cx('wrapper')}>
+                <div className={cx('comic-image')}>
+                    <img src={item.thumbnail} alt="anh" />
+                </div>
+                <div className={cx('comic-title')}>{item.title}</div>
             </div>
-            <div className={cx('comic-title')}>{item.title}</div>
-        </div>
+        </Link>
     )
 }
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, Fragment } from 'react'
+import React, { useEffect, useState, Fragment } from 'react'
 
 import './SlideShow.scss'
 import { SlideShowData } from '../../utils/SlideShowData'
@@ -24,7 +24,7 @@ function SlideShow() {
                             <div className="mySlides fade">
                                 <div className="numbertext">{item.id}</div>
                                 <div className="img-container">
-                                    <img className="img-slideshow" src={item.image} />
+                                    <img className="img-slideshow" src={item.image} alt="anh" />
                                 </div>
                             </div>
                         )}
