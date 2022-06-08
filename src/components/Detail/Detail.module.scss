@@ -1,0 +1,15 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+.comic-description {
+    padding: 20px;
+    .introduction {
+        color: var(--orangeC);
+        // font-size: 1.4vw;
+    }
+    .description {
+        // font-size: 1.3vw;
+    }
+}

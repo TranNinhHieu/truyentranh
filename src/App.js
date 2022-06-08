@@ -1,4 +1,3 @@
-import { Fragment } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import classNames from 'classnames/bind'
 import Content from '~/components/Content'
@@ -9,7 +8,6 @@ import TopView from '~/components/TopView/TopView.js'
 import Detail from '~/components/Detail/Detail.js'
 import styles from './App.module.scss'
 
-import { ComicData } from '~/utils/ComicData.js'
 const cx = classNames.bind(styles)
 
 function App() {
@@ -30,11 +28,9 @@ function App() {
                     }
                 ></Route>
                 {/* <Route path="a" element={<Detail />}></Route> */}
-                {ComicData.map((item) => (
-                    <Fragment key={item._id.$oid}>
-                        <Route path={item._id.$oid} element={<Detail item={item} />}></Route>
-                    </Fragment>
-                ))}
+
+                <Route path="/detail" element={<Detail />}></Route>
+                <Route path="*" element={<div>404 not found</div>}></Route>
             </Routes>
 
             <Footer />

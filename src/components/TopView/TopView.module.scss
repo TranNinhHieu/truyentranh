@@ -4,7 +4,7 @@
     flex-wrap: wrap;
     background-color: #ebebeb;
     border: 1px solid rgb(141, 234, 249);
-    border-radius: 25px;
+    border-radius: var(--radius);
     margin-bottom: 10px;
 }
 .container-button {

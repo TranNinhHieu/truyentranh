@@ -3,15 +3,18 @@ import React from 'react'
 import classNames from 'classnames/bind'
 
 import styles from './Comic.module.scss'
+import Image from '~/components/Image'
 
 const cx = classNames.bind(styles)
 
 function Comic({ item }) {
     return (
-        <Link to={item._id.$oid}>
+        //Khi m click vào cái Link này ==> tuyền qua param . t nho pẩm là nó lấy từ sau khúc html:// mà :v la
+
+        <Link to={`/detail?comicId=${item._id.$oid}`}>
             <div className={cx('wrapper')}>
                 <div className={cx('comic-image')}>
-                    <img src={item.thumbnail} alt="anh" />
+                    <Image src={`comics/truyen${item.number}/${item.thumbnail}`} alt={item.name} />
                 </div>
                 <div className={cx('comic-title')}>{item.title}</div>
             </div>

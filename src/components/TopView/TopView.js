@@ -8,8 +8,9 @@ function TopView() {
     const [show, setShow] = useState(0)
     let topViewData = [...ComicData]
     let topNewUpdatedData = [...ComicData]
+    // console.log(ComicData)
     topViewData.sort((a, b) => (a.views > b.views ? -1 : 1))
-    topNewUpdatedData = ComicData.sort((a, b) => (a.createAt.$numberLong > b.createAt.$numberLong ? -1 : 1))
+    topNewUpdatedData = topNewUpdatedData.sort((a, b) => (a.createAt.$numberLong > b.createAt.$numberLong ? -1 : 1))
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container-button')}>

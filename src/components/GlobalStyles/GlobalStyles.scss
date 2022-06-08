@@ -5,6 +5,8 @@
     --orangeC: #f18121;
     --black: #000;
     --bluesky: rgba(132, 239, 237, 0.381);
+    --radius: 10px;
+    --white: #fff;
 }
 
 * {
@@ -26,4 +28,5 @@ body {
 
 a {
     text-decoration: none;
+    color: var(--black);
 }
