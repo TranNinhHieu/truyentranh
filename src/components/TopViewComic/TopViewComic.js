@@ -4,15 +4,16 @@ import classNames from 'classnames/bind'
 import styles from './TopViewComic.module.scss'
 import { faEye } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Image from '~/components/Image'
 const cx = classNames.bind(styles)
 function TopViewComic({ item }) {
     return (
         <Fragment>
             <div className={cx('container')}>
                 <div className={cx('wrapper')}>
-                    <Link to={item._id.$oid}>
+                    <Link to={`/detail?comicId=${item._id.$oid}`}>
                         <div className={cx('comic-image')}>
-                            <img src={item.thumbnail} alt="anh" />
+                            <Image src={`comics/truyen${item.number}/${item.thumbnail}`} />
                         </div>
                     </Link>
                 </div>

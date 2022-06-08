@@ -11,9 +11,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            // object-fit: cover;
             border: 1px solid #000;
-            border-radius: 20px;
+            border-radius: var(--radius);
             cursor: pointer;
             &:hover {
                 border: 3px solid rgb(234, 223, 223);

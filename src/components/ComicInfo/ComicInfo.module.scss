@@ -1,0 +1,93 @@
+.comic-info {
+    display: flex;
+    .comic-thumbnai {
+        width: 15%;
+        padding-top: calc(3 / 2 * 15%);
+        position: relative;
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 1px solid #000;
+            border-radius: var(--radius);
+        }
+    }
+    .infomation {
+        width: 50%;
+        padding: 0 0 0 10px;
+        td {
+            padding-right: 5vw;
+        }
+        .title {
+            font-size: 2.5vw;
+            font-weight: bold;
+        }
+        .comic-general-description {
+            font-size: 1.5vw;
+        }
+        .comic-tags {
+            display: flex;
+            // justify-content: space-between;
+            padding-top: 10px;
+            .comic-tag {
+                font-size: 1.5vw;
+                padding: 0.4vw;
+                color: (var(--orangeC));
+                border-radius: 4px;
+                border: 2px solid var(--orangeC);
+                cursor: pointer;
+                margin: 0 0 0 10px;
+                &:hover {
+                    color: var(--black);
+                    background-color: var(--orangeC);
+                }
+            }
+        }
+        .comic-button {
+            display: flex;
+            // justify-content: space-evenly;
+            padding-top: 20px;
+            .button-read-first {
+                font-size: 2vw;
+                padding: 0.4vw;
+                cursor: pointer;
+                border-radius: 4px;
+                background-color: rgb(139, 195, 74);
+                color: var(--white);
+                border: none;
+                margin: 0 0 0 10px;
+                &:hover {
+                    opacity: 0.6;
+                }
+            }
+            .button-follow {
+                font-size: 2vw;
+                padding: 0.4vw;
+                cursor: pointer;
+                border-radius: 4px;
+                background-color: rgb(255, 56, 96);
+                color: var(--white);
+                border: none;
+                margin: 0 0 0 10px;
+                &:hover {
+                    opacity: 0.6;
+                }
+            }
+            .button-like {
+                font-size: 2vw;
+                padding: 0.4vw;
+                cursor: pointer;
+                border-radius: 4px;
+                background-color: rgb(45, 134, 255);
+                color: var(--white);
+                border: none;
+                margin: 0 0 0 10px;
+                &:hover {
+                    opacity: 0.6;
+                }
+            }
+        }
+    }
+}

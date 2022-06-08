@@ -2,7 +2,7 @@ import React, { useState, Fragment } from 'react'
 import classNames from 'classnames/bind'
 import styles from './Content.module.scss'
 import Comic from '~/components/Comic'
-import { ComicData } from '../../utils/ComicData'
+import { ComicData } from '~/utils/ComicData'
 const cx = classNames.bind(styles)
 
 function Content() {
