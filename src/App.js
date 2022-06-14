@@ -30,6 +30,7 @@ function App() {
                 {/* <Route path="a" element={<Detail />}></Route> */}
 
                 <Route path="/detail" element={<Detail />}></Route>
+                <Route path="/detail/:comicId/:chapter" element={<div>oke</div>}></Route>
                 <Route path="*" element={<div>404 not found</div>}></Route>
             </Routes>
 
