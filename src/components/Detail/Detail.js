@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react'
-// import { Link } from 'react-router-dom'
+import React, { Fragment, useEffect, useState } from 'react'
 import classNames from 'classnames/bind'
 
 import styles from './Detail.module.scss'
@@ -11,6 +10,7 @@ import { ChapterData } from 'src/utils/ChapterData'
 import { FindAllTag } from 'src/utils/FindTag'
 
 import useQuery from '~/hooks/useQuery'
+import { Helmet } from 'react-helmet-async'
 
 const cx = classNames.bind(styles)
 
@@ -26,33 +26,37 @@ function Detail() {
         let curlistChapter = ChapterData.filter((item) => item.comicID === query.get('comicId'))
         if (curComic[0] === undefined) {
             setShow(false)
-            document.title = 'Truyện không tồn tại'
         } else {
             setComic({ ...curComic[0] })
-            document.title = curComic[0].title
             setTags(FindAllTag(curComic[0]))
             setListChapter(curlistChapter)
         }
-    }, [])
+    }, [query.get('comicId')])
 
     return (
         <>
-            {/* {console.log(listChapter[1].chap)} */}
-            {show === true ? (
-                <div className={cx('wrapper')}>
-                    <ComicInfo comic={comic} tags={tags} />
-                    <div className={cx('comic-description')}>
-                        <div className={cx('introduction')}>Giới thiệu</div>
-                        <div className={cx('description')}>{comic.description}</div>
+            {show ? (
+                <Fragment>
+                    <Helmet>
+                        <title>{comic?.title}</title>
+                    </Helmet>
+                    <div className={cx('wrapper')}>
+                        <ComicInfo comic={comic} tags={tags} />
+                        <div className={cx('comic-description')}>
+                            <div className={cx('introduction')}>Giới thiệu</div>
+                            <div className={cx('description')}>{comic.description}</div>
+                        </div>
+                        <ListChapter listChapter={listChapter} />
+                        <div></div>
                     </div>
-                    <ListChapter listChapter={listChapter} />
-                    <div></div>
-                    {/* {Chapter[0].image.map((image, index) => (
-                    <Image key={index} src={`comics/truyen38/chap1/${image}`} alt={comic.thumbnail} />
-                ))} */}
-                </div>
+                </Fragment>
             ) : (
-                <div> Truyện không tồn tại</div>
+                <Fragment>
+                    <Helmet>
+                        <title>Truyện không tồn tại</title>
+                    </Helmet>
+                    <div> Truyện không tồn tại</div>
+                </Fragment>
             )}
         </>
     )

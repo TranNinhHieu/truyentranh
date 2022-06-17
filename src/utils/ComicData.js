@@ -1536,6 +1536,3 @@ export const ComicData = [
         _destroy: false,
     },
 ]
-// console.log(ComicData)
-
-// ComicData.sort((a, b) => (a.views > b.views ? -1 : 1))
