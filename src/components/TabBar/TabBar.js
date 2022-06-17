@@ -31,7 +31,7 @@ function TabBar() {
                 <div className={cx('top-bar-right')}>
                     <img
                         className={cx('avatar')}
-                        src="http://avatar.truyenvua.com/160x160/avatar_1649716632.jpg?r=r8645456"
+                        src="https://pbs.twimg.com/media/FUN46S6XoAEzmlz?format=jpg&name=small"
                         alt="anh"
                     />
                 </div>
@@ -45,11 +45,9 @@ function TabBar() {
                     <div className={cx('dropdown-content')}>
                         {TagData.map((item) => (
                             <Fragment key={item._id.$oid}>
-                                <div className={cx('dropdown-item')}>
-                                    <Link to="/" alt="Home">
-                                        {item.name}
-                                    </Link>
-                                </div>
+                                <Link to={`/tag?tagId=${item._id.$oid}`} alt="Home" className={cx('dropdown-item')}>
+                                    <div className={cx('dropdown-item-name')}>{item.name}</div>
+                                </Link>
                             </Fragment>
                         ))}
                     </div>
