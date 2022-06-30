@@ -1,15 +1,26 @@
-import { Link } from 'react-router-dom'
-import React, { Fragment } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import React, { Fragment, useState } from 'react'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from 'classnames/bind'
 
 import styles from './TabBar.module.scss'
 import { TagData } from '~/utils/TagData'
+import { trimString } from '~/utils/TrimString'
 
 const cx = classNames.bind(styles)
 
 function TabBar() {
+    const [searchContent, setSearchContent] = useState('')
+    let navigate = useNavigate()
+
+    const handleGoToSearchPage = (key) => {
+        if (trimString(searchContent))
+            if (key === 'Enter' || key === 'click') {
+                navigate(`/search?searchContent=${searchContent}`)
+                setSearchContent('')
+            }
+    }
     return (
         <div className={cx('tab-bar')}>
             <div className={cx('top-bar')}>
@@ -22,8 +33,15 @@ function TabBar() {
                         />
                     </Link>
                     <div className={cx('search')}>
-                        <input className={cx('search-input')} placeholder="Bạn muốn tìm gì" />
-                        <button className={cx('search-icon')}>
+                        <input
+                            className={cx('search-input')}
+                            placeholder="Bạn muốn tìm gì"
+                            onChange={(e) => setSearchContent(e.target.value)}
+                            value={searchContent}
+                            onKeyDown={(event) => handleGoToSearchPage(event.key)}
+                        />
+
+                        <button onClick={() => handleGoToSearchPage('click')} className={cx('search-icon')}>
                             <FontAwesomeIcon icon={faMagnifyingGlass} />
                         </button>
                     </div>
