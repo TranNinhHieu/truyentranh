@@ -23,11 +23,13 @@ function TagComic() {
     useEffect(() => {
         let curTag = TagData.filter((item) => item._id.$oid === query.get('tagId'))
         let curListChapter = ComicData.filter(function (item) {
+            let comic
             for (let i = 0; i < item.tagID.length; i++) {
                 if (query.get('tagId') === item.tagID[i].$oid) {
-                    return item
+                    comic = item
                 }
             }
+            return comic
         })
         if (curTag[0] === undefined) {
             setShow(false)
