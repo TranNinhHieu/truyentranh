@@ -1,0 +1,16 @@
+.notification {
+    padding: 5px 20px;
+}
+.comic-container {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: var(--bgcl);
+    padding: 30px 20px;
+    margin: 20px 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 3px var(--orangeC), 0 0 0 1px var(--orangeC);
+    .container {
+        width: 16.25%;
+        padding: 0 15px;
+    }
+}

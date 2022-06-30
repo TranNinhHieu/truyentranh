@@ -13,6 +13,7 @@ import styles from './App.module.scss'
 import OnTopButton from '~/components/OnTopButton/OnTopButton.js'
 import NotFound from '~/components/NotFound/NotFound'
 import TagComic from '~/components/TagComic/TagComic'
+import Search from '~/components/Search/Search'
 
 const cx = classNames.bind(styles)
 
@@ -29,6 +30,7 @@ function App() {
 
                 <Route path="/tag" element={<TagComic />}></Route>
                 <Route path="*" element={<NotFound />}></Route>
+                <Route path="/search" element={<Search />}></Route>
             </Routes>
 
             <Footer />
