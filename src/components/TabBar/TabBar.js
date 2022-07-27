@@ -12,6 +12,7 @@ const cx = classNames.bind(styles)
 
 function TabBar() {
     const [searchContent, setSearchContent] = useState('')
+    const [loginRegister, setLoginRegister] = useState(false)
     let navigate = useNavigate()
 
     const handleGoToSearchPage = (key) => {
@@ -46,12 +47,24 @@ function TabBar() {
                         </button>
                     </div>
                 </div>
-                <div className={cx('top-bar-right')}>
+                <div className={cx('top-bar-right')} onClick={() => setLoginRegister(!loginRegister)}>
                     <img
                         className={cx('avatar')}
-                        src="https://pbs.twimg.com/media/FUN46S6XoAEzmlz?format=jpg&name=small"
+                        src="https://cdn-icons-png.flaticon.com/512/1053/1053244.png?w=360"
                         alt="anh"
                     />
+                    {console.log(loginRegister)}
+                    {loginRegister && (
+                        <div className={cx('login-register')}>
+                            <Link to={`/login`} className={cx('login')}>
+                                Login
+                            </Link>
+
+                            <Link to={`/register`} className={cx('register')}>
+                                Register
+                            </Link>
+                        </div>
+                    )}
                 </div>
             </div>
             <div className={cx('nav-bar')}>
