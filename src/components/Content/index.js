@@ -1,26 +1,37 @@
-import React, { useState, Fragment } from 'react'
+import React, { useState, Fragment, useEffect } from 'react'
 import classNames from 'classnames/bind'
 import styles from './Content.module.scss'
 import Comic from '~/components/Comic'
-import { ComicData } from '~/utils/ComicData'
+import { fetchAllComic } from '~/ApiCall/comicsAPI.js'
 const cx = classNames.bind(styles)
 
 function Content() {
     const [page, setPage] = useState(1)
-
+    const [comics, setComics] = useState([])
+    const [quantityComic, setQuantityComic] = useState([])
+    useEffect(() => {
+        fetchAllComic(page).then((res) => {
+            setComics(res.data.comics)
+        })
+    }, [page])
+    useEffect(() => {
+        fetchAllComic(0).then((res) => {
+            setQuantityComic(res.data.comics)
+        })
+    }, [])
     return (
         <div className={cx('wrapper')}>
-            {ComicData.map((item, index) => (
+            {comics.map((item, index) => (
                 <Fragment key={index}>
-                    {Math.floor(index / 12 + 1) === page && (
-                        <div className={cx('container')}>
-                            <Comic item={item} />
-                        </div>
-                    )}
+                    {/* {Math.floor(index / 12 + 1) === page && ( */}
+                    <div className={cx('container')}>
+                        <Comic item={item} />
+                    </div>
+                    {/* )} */}
                 </Fragment>
             ))}
             <div className={cx('container-page')}>
-                {ComicData.map((item, index) => (
+                {quantityComic.map((item, index) => (
                     <Fragment key={index}>
                         {index % 12 === 0 && (
                             <button

@@ -14,6 +14,8 @@ import OnTopButton from '~/components/OnTopButton/OnTopButton.js'
 import NotFound from '~/components/NotFound/NotFound'
 import TagComic from '~/components/TagComic/TagComic'
 import Search from '~/components/Search/Search'
+import Login from '~/components/Login/Login'
+import Register from '~/components/Register/Register'
 
 const cx = classNames.bind(styles)
 
@@ -29,8 +31,10 @@ function App() {
                 <Route path="/reading" element={<Reading />}></Route>
 
                 <Route path="/tag" element={<TagComic />}></Route>
-                <Route path="*" element={<NotFound />}></Route>
                 <Route path="/search" element={<Search />}></Route>
+                <Route path="/login" element={<Login />}></Route>
+                <Route path="/register" element={<Register />}></Route>
+                <Route path="*" element={<NotFound />}></Route>
             </Routes>
 
             <Footer />

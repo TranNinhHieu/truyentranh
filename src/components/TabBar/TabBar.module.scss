@@ -52,10 +52,47 @@
         cursor: pointer;
     }
 }
-.avatar {
-    height: 100%;
+.top-bar-right {
+    height: 50px;
     width: 50px;
     border-radius: 25px;
+    background-color: var(--orangeC);
+    .avatar {
+        height: 100%;
+        // width: 50px;
+        border-radius: 25px;
+        background-color: var(--orangeC);
+    }
+    .login-register {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        left: -50%;
+        top: 10%;
+        width: 170%;
+        z-index: 1;
+        background-color: #fff;
+        box-shadow: 2px 2px 4px #696868;
+        font-size: 20px;
+        text-align: center;
+        .login {
+            height: 100%;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--black);
+            &:hover {
+                background-color: var(--bgcl);
+                color: var(--orangeC);
+            }
+        }
+        .register {
+            height: 100%;
+            padding: 10px 0;
+            &:hover {
+                background-color: var(--bgcl);
+                color: var(--orangeC);
+            }
+        }
+    }
 }
 
 .nav-bar {
