@@ -1,20 +1,24 @@
 import { Link, useNavigate } from 'react-router-dom'
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from 'classnames/bind'
 
 import styles from './TabBar.module.scss'
-import { TagData } from '~/utils/TagData'
 import { trimString } from '~/utils/TrimString'
+import { fetchAllTag } from '~/ApiCall/tagsAPI'
 
 const cx = classNames.bind(styles)
 
 function TabBar() {
     const [searchContent, setSearchContent] = useState('')
     const [loginRegister, setLoginRegister] = useState(false)
+    const [tags, setTags] = useState([])
     let navigate = useNavigate()
 
+    useEffect(() => {
+        fetchAllTag().then((res) => setTags(res.data))
+    }, [])
     const handleGoToSearchPage = (key) => {
         if (trimString(searchContent))
             if (key === 'Enter' || key === 'click') {
@@ -74,9 +78,9 @@ function TabBar() {
                 <div className={cx('nav-bar-item', 'dropdown')}>
                     <span>Thể loại</span>
                     <div className={cx('dropdown-content')}>
-                        {TagData.map((item) => (
-                            <Fragment key={item._id.$oid}>
-                                <Link to={`/tag?tagId=${item._id.$oid}`} alt="Home" className={cx('dropdown-item')}>
+                        {tags.map((item) => (
+                            <Fragment key={item._id}>
+                                <Link to={`/tag?tagId=${item._id}`} alt="Home" className={cx('dropdown-item')}>
                                     <div className={cx('dropdown-item-name')}>{item.name}</div>
                                 </Link>
                             </Fragment>

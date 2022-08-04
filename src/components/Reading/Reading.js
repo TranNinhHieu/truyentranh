@@ -3,9 +3,6 @@ import React, { Fragment, useEffect, useState } from 'react'
 
 import useQuery from '~/hooks/useQuery'
 import Image from '~/components/Image'
-import { ComicData } from 'src/utils/ComicData'
-import { ChapterData } from 'src/utils/ChapterData'
-
 import classNames from 'classnames/bind'
 import styles from './Reading.module.scss'
 import { Link } from 'react-router-dom'
@@ -15,10 +12,8 @@ import { fetchFullChapter, fetchAllChapterOfComic } from '~/ApiCall/chapters'
 const cx = classNames.bind(styles)
 
 function Reading() {
-    // const [comic, setComic] = useState({})
     const [listChapter, setListChapter] = useState([])
     const [chapter, setChapter] = useState({})
-    // const [show, setShow] = useState(true)
     const [showList, setShowList] = useState(false)
     let query = useQuery()
     useEffect(() => {
@@ -28,18 +23,6 @@ function Reading() {
         fetchAllChapterOfComic(query.get('comicId')).then((res) => {
             setListChapter(res.data)
         })
-        // let curComic = ComicData.filter((item) => item._id.$oid === query.get('comicId'))
-        // let curListChapter = ChapterData.filter((item) => item.comicID === query.get('comicId'))
-
-        // let curChapter = curListChapter.filter((item) => item.chap === Number(query.get('chapter')))
-        // if (curComic[0] === undefined || curChapter[0] === undefined) {
-        //     setShow(false)
-        // } else {
-        //     setComic({ ...curComic[0] })
-        //     setListChapter(curListChapter)
-        //     setChapter(curChapter[0])
-        //     setShowList(false)
-        // }
     }, [query.get('chapter'), query.get('comicId')])
     return (
         <>

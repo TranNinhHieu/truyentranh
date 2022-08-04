@@ -38,8 +38,8 @@ function ComicInfo(item) {
                         </tbody>
                     </table>
                     <div className={cx('comic-tags')}>
-                        {tags.map((tag) => (
-                            <Link to={`/tag?tagId=${tag._id.$oid}`} key={tag._id.$oid}>
+                        {tags?.map((tag) => (
+                            <Link to={`/tag?tagId=${tag._id}`} key={tag._id}>
                                 <button className={cx('comic-tag')}>{tag.name}</button>
                             </Link>
                         ))}
