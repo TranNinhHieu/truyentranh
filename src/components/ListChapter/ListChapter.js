@@ -16,13 +16,13 @@ function ListChapter(item) {
                 <div className={cx('list-chapter')}>
                     <div>
                         {listChapter.map((item) => (
-                            <Fragment key={item._id.$oid}>
+                            <Fragment key={item._id}>
                                 <div className={cx('container-chap')}>
                                     <div className={cx('chapter')}>
                                         <Link to={`/reading?comicId=${item.comicID}&chapter=${item.chap}`}>
                                             <div className={cx('text-chap')}>Chương {item.chap}</div>
                                         </Link>
-                                        <div className={cx('text-date')}>{Convert(item.createAt.$numberLong)}</div>
+                                        <div className={cx('text-date')}>{Convert(item.createAt)}</div>
                                     </div>
                                 </div>
                             </Fragment>

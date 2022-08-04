@@ -5,43 +5,37 @@ import classNames from 'classnames/bind'
 import styles from './Detail.module.scss'
 import ComicInfo from '~/components/ComicInfo/ComicInfo.js'
 import ListChapter from '~/components/ListChapter/ListChapter.js'
-import { ComicData } from 'src/utils/ComicData'
-import { ChapterData } from 'src/utils/ChapterData'
-import { FindAllTag } from 'src/utils/FindTag'
 
 import useQuery from '~/hooks/useQuery'
 import { Helmet } from 'react-helmet-async'
+import { fetchAllChapterOfComic } from '~/ApiCall/chapters'
+import { fetchDetailComic } from '~/ApiCall/comicsAPI'
 
 const cx = classNames.bind(styles)
 
 function Detail() {
     const [comic, setComic] = useState({})
     const [listChapter, setListChapter] = useState([])
-    const [show, setShow] = useState(true)
-    const [tags, setTags] = useState([])
     let query = useQuery()
 
     useEffect(() => {
-        let curComic = ComicData.filter((item) => item._id.$oid === query.get('comicId'))
-        let curlistChapter = ChapterData.filter((item) => item.comicID === query.get('comicId'))
-        if (curComic[0] === undefined) {
-            setShow(false)
-        } else {
-            setComic({ ...curComic[0] })
-            setTags(FindAllTag(curComic[0]))
-            setListChapter(curlistChapter)
-        }
+        fetchAllChapterOfComic(query.get('comicId')).then((res) => {
+            setListChapter(res.data)
+        })
+        fetchDetailComic(query.get('comicId')).then((res) => {
+            setComic(res.data)
+        })
     }, [query.get('comicId')])
 
     return (
         <>
-            {show ? (
+            {listChapter[0] ? (
                 <Fragment>
                     <Helmet>
                         <title>{comic?.title}</title>
                     </Helmet>
                     <div className={cx('wrapper')}>
-                        <ComicInfo comic={comic} tags={tags} />
+                        <ComicInfo comic={comic} tags={comic.tags} />
                         <div className={cx('comic-description')}>
                             <div className={cx('introduction')}>Giới thiệu</div>
                             <div className={cx('description')}>{comic.description}</div>
