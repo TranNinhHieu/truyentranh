@@ -11,14 +11,14 @@ function TopViewComic({ item }) {
         <Fragment>
             <div className={cx('container')}>
                 <div className={cx('wrapper')}>
-                    <Link to={`/detail?comicId=${item._id.$oid}`}>
+                    <Link to={`/detail?comicId=${item._id}`}>
                         <div className={cx('comic-image')}>
                             <Image src={`comics/truyen${item.number}/${item.thumbnail}`} />
                         </div>
                     </Link>
                 </div>
                 <div className={cx('comic-title-view')}>
-                    <Link to={item._id.$oid}>
+                    <Link to={`/detail?comicId=${item._id}`}>
                         <div className={cx('comic-title')}>{item.title}</div>
                     </Link>
                     <div className={cx('comic-view')}>

@@ -3,37 +3,27 @@ import React, { Fragment, useEffect, useState } from 'react'
 import classNames from 'classnames/bind'
 
 import styles from './Search.module.scss'
-import { ComicData } from '~/utils/ComicData'
 import { Helmet } from 'react-helmet-async'
 import useQuery from '~/hooks/useQuery'
 import { trimString } from 'src/utils/TrimString'
 import Comic from '../Comic'
+import { searchComic } from '~/ApiCall/comicsAPI'
 const cx = classNames.bind(styles)
 
 function Search() {
     let query = useQuery()
     const [searchInfo, setSearchInfo] = useState()
     const [listComic, setListComic] = useState([])
-    const [show, setShow] = useState(true)
-
     useEffect(() => {
         setSearchInfo(trimString(query.get('searchContent')))
-        let curListComic = ComicData.filter((item) =>
-            item.title2.toLowerCase().includes(trimString(query.get('searchContent')).toLowerCase()),
-        )
-        if (curListComic[0] === undefined) {
-            setShow(false)
-        } else {
-            setShow(true)
-            setListComic([...curListComic])
-        }
+        searchComic(query.get('searchContent'), 0).then((res) => setListComic(res.data.comics))
     }, [query.get('searchContent')])
     return (
         <Fragment>
             <Helmet>
                 <title>{`Kết quả : ${searchInfo}`}</title>
             </Helmet>
-            {show ? (
+            {listComic[0] ? (
                 <Fragment>
                     <div className={cx('notification')}>Kết quả tìm kiếm : {searchInfo}</div>
                     <div className={cx('comic-container')}>

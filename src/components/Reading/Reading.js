@@ -8,6 +8,7 @@ import styles from './Reading.module.scss'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { fetchFullChapter, fetchAllChapterOfComic } from '~/ApiCall/chapters'
+import { fetchDetailComic, updateComics } from '~/ApiCall/comicsAPI'
 
 const cx = classNames.bind(styles)
 
@@ -23,19 +24,24 @@ function Reading() {
         fetchAllChapterOfComic(query.get('comicId')).then((res) => {
             setListChapter(res.data)
         })
+        fetchDetailComic(query.get('comicId')).then((res) => {
+            updateComics(query.get('comicId'), { views: res.data.views + Number(1) })
+        })
     }, [query.get('chapter'), query.get('comicId')])
     return (
         <>
             {chapter._id ? (
                 <div className={cx('wrapper')}>
                     <Helmet>
+                        {' '}
+                        {console.log(query.get('chapter'))}
                         <title>{chapter.title + ' Chương ' + chapter.chap}</title>
                     </Helmet>
                     <div className={cx('infomation')}>
                         <div className={cx('direction')}>
                             <Link to="/"> Trang chủ </Link>
                             <span>/</span>
-                            <Link to={`/detail?comicId=${chapter?._id}`}> {chapter.title} </Link>
+                            <Link to={`/detail?comicId=${listChapter[0]?.comicID}`}> {chapter.title} </Link>
                             <span>/</span>
                             <span> {chapter.chap} </span>
                         </div>
