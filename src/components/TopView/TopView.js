@@ -1,16 +1,19 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import classNames from 'classnames/bind'
 import styles from './TopView.module.scss'
 import TopViewComic from '../TopViewComic/TopViewComic.js'
-import { ComicData } from '~/utils/ComicData'
+import { fetchAllComic } from '~/ApiCall/comicsAPI'
 const cx = classNames.bind(styles)
 function TopView() {
     const [show, setShow] = useState(0)
-    let topViewData = [...ComicData]
-    let topNewUpdatedData = [...ComicData]
-
+    const [topViewData, setTopViewData] = useState([])
+    const [topNewUpdatedData, setTopNewUpdatedData] = useState([])
+    useEffect(() => {
+        fetchAllComic(0).then((res) => setTopViewData(res.data.comics))
+        fetchAllComic(0).then((res) => setTopNewUpdatedData(res.data.comics))
+    }, [])
     topViewData.sort((a, b) => (a.views > b.views ? -1 : 1))
-    topNewUpdatedData = topNewUpdatedData.sort((a, b) => (a.createAt.$numberLong > b.createAt.$numberLong ? -1 : 1))
+    topNewUpdatedData.sort((a, b) => (a.createAt > b.createAt ? -1 : 1))
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container-button')}>
@@ -24,7 +27,7 @@ function TopView() {
 
             <div className={cx('list-comic')}>
                 {show === 0 &&
-                    topViewData.map((item, index) => (
+                    topViewData?.map((item, index) => (
                         <Fragment key={index}>{index < 4 && <TopViewComic item={item} />}</Fragment>
                     ))}
                 {show === 1 &&

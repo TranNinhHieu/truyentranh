@@ -57,7 +57,6 @@ function TabBar() {
                         src="https://cdn-icons-png.flaticon.com/512/1053/1053244.png?w=360"
                         alt="anh"
                     />
-                    {console.log(loginRegister)}
                     {loginRegister && (
                         <div className={cx('login-register')}>
                             <Link to={`/login`} className={cx('login')}>

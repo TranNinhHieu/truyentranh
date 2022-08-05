@@ -40,7 +40,7 @@ function Detail() {
                             <div className={cx('introduction')}>Giới thiệu</div>
                             <div className={cx('description')}>{comic.description}</div>
                         </div>
-                        <ListChapter listChapter={listChapter} />
+                        <ListChapter listChapter={listChapter} views={comic.views} />
                         <div></div>
                     </div>
                 </Fragment>
