@@ -1,45 +1,36 @@
-import { Routes, Route } from 'react-router-dom'
 import classNames from 'classnames/bind'
-
-import TabBar from '~/components/TabBar/TabBar.js'
-import Home from '~/components/Home/Home.js'
-
+import TabBar from '../src/components/TabBar/TabBar'
 import Footer from '~/components/Footer/Footer.js'
-
-import Detail from '~/components/Detail/Detail.js'
-import Reading from '~/components/Reading/Reading.js'
-
 import styles from './App.module.scss'
 import OnTopButton from '~/components/OnTopButton/OnTopButton.js'
-import NotFound from '~/components/NotFound/NotFound'
-import TagComic from '~/components/TagComic/TagComic'
-import Search from '~/components/Search/Search'
-import Login from '~/components/Login/Login'
-import Register from '~/components/Register/Register'
+import Body from './components/Body/Body'
 
+import 'react-toastify/dist/ReactToastify.css'
+import { BrowserRouter as Router } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 const cx = classNames.bind(styles)
 
 function App() {
     return (
-        <div className={cx('wrapper')}>
-            <TabBar />
-            <Routes>
-                <Route path="/" element={<Home />}></Route>
-                {/* <Route path="a" element={<Detail />}></Route> */}
-
-                <Route path="/detail" element={<Detail />}></Route>
-                <Route path="/reading" element={<Reading />}></Route>
-
-                <Route path="/tag" element={<TagComic />}></Route>
-                <Route path="/search" element={<Search />}></Route>
-                <Route path="/login" element={<Login />}></Route>
-                <Route path="/register" element={<Register />}></Route>
-                <Route path="*" element={<NotFound />}></Route>
-            </Routes>
-
-            <Footer />
-            <OnTopButton />
-        </div>
+        <Router>
+            <div className={cx('wrapper')}>
+                <ToastContainer
+                    position="top-center"
+                    autoClose={3000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                />
+                <TabBar />
+                <Body />
+                <Footer />
+                <OnTopButton />
+            </div>
+        </Router>
     )
 }
 

@@ -2,6 +2,7 @@
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import { Convert } from 'src/utils/ConvertTimestampToDate'
+
 import classNames from 'classnames/bind'
 import styles from './ListChapter.module.scss'
 
@@ -19,7 +20,7 @@ function ListChapter(item) {
                             <Fragment key={item._id}>
                                 <div className={cx('container-chap')}>
                                     <div className={cx('chapter')}>
-                                        <Link to={`/reading?comicId=${item.comicID}&chapter=${item.chap}`}>
+                                        <Link to={`/Reading?comicId=${item.comicID}&chapter=${item.chap}`}>
                                             <div className={cx('text-chap')}>Chương {item.chap}</div>
                                         </Link>
                                         <div className={cx('text-date')}>{Convert(item.createAt)}</div>
@@ -28,14 +29,6 @@ function ListChapter(item) {
                             </Fragment>
                         ))}
                     </div>
-
-                    {/* <div className={cx('date')}>
-                        {listChapter.map((item) => (
-                            <Fragment key={item._id.$oid}>
-                                <div className={cx('text-date')}>{item.createAt.$numberLong}</div>
-                            </Fragment>
-                        ))}
-                    </div> */}
                 </div>
             </div>
         </>

@@ -8,7 +8,6 @@ import { Helmet } from 'react-helmet-async'
 const cx = classNames.bind(styles)
 
 function NotFound() {
-    document.title = 'Page Not Found'
     return (
         <Fragment>
             <Helmet>

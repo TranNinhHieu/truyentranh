@@ -1,24 +1,24 @@
 import axios from 'axios'
-// import { getToken, removeUserSession } from 'utils/common'
+import { getAccessToken, removeAccessToken, setAccessToken } from '~/utils/Authentication'
 
 const instance = axios.create({
-    baseURL: 'http://localhost:8080/',
+    baseURL: 'http://localhost:5000/',
 })
 
-// instance.interceptors.request.use(
-//     (config) => {
-//         const token = getToken()
-//         if (token !== null) {
-//             // config.headers['Authorization'] = 'Bearer ' + token  // for Spring Boot back-end
-//             config.headers['x-access-token'] = token // for Node.js Express back-end
-//         }
+instance.interceptors.request.use(
+    (config) => {
+        const token = getAccessToken()
+        if (token !== null) {
+            // config.headers['Authorization'] = 'Bearer ' + token  // for Spring Boot back-end
+            config.headers['x-access-token'] = token // for Node.js Express back-end
+        }
 
-//         return config
-//     },
-//     (error) => {
-//         return Promise.reject(error)
-//     },
-// )
+        return config
+    },
+    (error) => {
+        return Promise.reject(error)
+    },
+)
 
 instance.interceptors.response.use(
     (res) => {
@@ -34,7 +34,7 @@ instance.interceptors.response.use(
                     const rs = await instance.get('/v1/user/refresh-token')
 
                     const { accessToken } = rs.data
-                    localStorage.setItem('accessToken', accessToken)
+                    setAccessToken(accessToken)
                     instance.defaults.headers.common['x-access-token'] = accessToken
 
                     return instance(originalConfig)
@@ -48,7 +48,7 @@ instance.interceptors.response.use(
             }
 
             if (err.response.status === 403) {
-                // removeUserSession()
+                removeAccessToken()
                 window.location.reload()
                 return Promise.reject(err.response.data)
             }

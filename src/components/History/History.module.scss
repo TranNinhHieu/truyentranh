@@ -1,0 +1,69 @@
+.chapter-container {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: var(--bgcl);
+    padding: 30px 20px;
+    margin: 20px 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 3px var(--orangeC), 0 0 0 1px var(--orangeC);
+    text-align: center;
+    justify-content: flex-start;
+
+    .container {
+        width: 16.25%;
+        padding: 0 15px;
+
+        @media (max-width: 1200px) {
+            width: 20%;
+        }
+        @media (max-width: 1000px) {
+            width: 25%;
+        }
+        @media (max-width: 800px) {
+            width: 33%;
+        }
+
+        .delete-comic-button {
+            position: relative;
+            display: flex;
+            left: calc(100% - 15.325px);
+            top: calc(0% + 15.65px);
+
+            z-index: 1;
+            &:hover {
+                background-color: var(--orangeC);
+                border: none;
+            }
+        }
+        .link-to-chapter {
+            cursor: pointer;
+            &:hover {
+                color: var(--orangeC);
+                text-align: center;
+            }
+        }
+    }
+}
+.container-page {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    flex-wrap: wrap;
+    .page {
+        margin: 10px;
+        height: 30px;
+        width: 30px;
+        cursor: pointer;
+        background-color: var(--bgcl);
+        border-radius: 15px;
+        padding: 2px;
+        border: none;
+        &:hover {
+            border: 3px solid rgb(239, 141, 81);
+        }
+    }
+    .active {
+        background-color: var(--orangeC);
+    }
+}

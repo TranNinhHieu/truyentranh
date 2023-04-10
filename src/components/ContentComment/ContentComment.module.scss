@@ -1,0 +1,41 @@
+.wrapper {
+    display: flex;
+    margin: 15px;
+
+    .avatar {
+        margin: 5px 0 0 0;
+        width: 44px;
+        height: 44px;
+        border-radius: 22px;
+    }
+    .info-comment {
+        padding: 10px;
+        border-radius: 5px;
+        border: solid 2px var(--orangeC);
+        background-color: var(--bgcl);
+        width: 100%;
+        margin: 0 0 0 10px;
+        .info-user {
+            display: flex;
+            margin: 0 0 5px 0;
+            justify-content: flex-start;
+            &-name {
+                font-weight: bold;
+                word-break: break-word;
+                margin: 0 10px 0 0;
+            }
+            .date-create {
+                color: #75f4a6;
+            }
+        }
+        .hr-info-content {
+            width: 100%;
+            background: var(--orangeC);
+            height: 2px;
+        }
+        .content-comment {
+            word-break: break-word;
+            padding: 0 10px 0 0;
+        }
+    }
+}

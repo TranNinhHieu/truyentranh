@@ -8,6 +8,7 @@
     --radius: 10px;
     --white: #fff;
     --bgcl: #ebebeb;
+    --white2: rgb(247, 247, 247);
 }
 
 * {
@@ -25,6 +26,12 @@ body {
     font-size: 1.6rem;
     line-height: 1.5;
     text-rendering: optimizeSpeed;
+    // -webkit-user-select: none;
+    // -khtml-user-select: none;
+    // -moz-user-select: none;
+    // -ms-user-select: none;
+    // -o-user-select: none;
+    // user-select: none;
 }
 
 a {

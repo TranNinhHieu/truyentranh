@@ -41,12 +41,10 @@
     &-icon {
         position: absolute;
         right: -1px;
-        // top: 1px;
         font-size: 1.4rem;
         width: 50px;
         height: 48px;
         border-radius: 0 25px 25px 0;
-        // border: 0;
         outline: none;
         background: #e8d2b2;
         cursor: pointer;
@@ -59,7 +57,6 @@
     background-color: var(--orangeC);
     .avatar {
         height: 100%;
-        // width: 50px;
         border-radius: 25px;
         background-color: var(--orangeC);
     }
@@ -85,6 +82,23 @@
             }
         }
         .register {
+            height: 100%;
+            padding: 10px 0;
+            &:hover {
+                background-color: var(--bgcl);
+                color: var(--orangeC);
+            }
+        }
+        .user-info {
+            height: 100%;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--black);
+            &:hover {
+                background-color: var(--bgcl);
+                color: var(--orangeC);
+            }
+        }
+        .logout {
             height: 100%;
             padding: 10px 0;
             &:hover {
