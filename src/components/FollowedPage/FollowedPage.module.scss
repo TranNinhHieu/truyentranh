@@ -1,0 +1,14 @@
+.button-container {
+    display: flex;
+    .button-follow-like {
+        font-size: 20px;
+        margin: 10px;
+        min-width: 200px;
+        min-height: 25px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .active {
+        background-color: var(--orangeC);
+    }
+}

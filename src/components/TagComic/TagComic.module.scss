@@ -2,13 +2,22 @@
     display: flex;
     flex-wrap: wrap;
     background-color: var(--bgcl);
-    padding: 30px 20px;
+    padding: 30px 20px 30px 25px;
     margin: 20px 10px;
     border-radius: 5px;
     box-shadow: 0 2px 3px var(--orangeC), 0 0 0 1px var(--orangeC);
     .container {
         width: 16.25%;
         padding: 0 15px;
+        @media (max-width: 1200px) {
+            width: 20%;
+        }
+        @media (max-width: 1000px) {
+            width: 25%;
+        }
+        @media (max-width: 800px) {
+            width: 33%;
+        }
     }
 }
 .tag-container {
@@ -24,8 +33,10 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-start;
+        @media (max-width: 1075px) {
+            justify-content: space-around;
+        }
         .tag-name {
-            // background-color: var(--orangeC);
             border: 1px solid var(--black);
             margin: 10px 0 0 50px;
             width: 150px;
@@ -44,9 +55,6 @@
             text-align: center;
             border-radius: 5px;
             background-color: var(--orangeC);
-
-            // pointer-events: none;
-
             cursor: not-allowed;
         }
     }

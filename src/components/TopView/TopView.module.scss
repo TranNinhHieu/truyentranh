@@ -6,6 +6,9 @@
     border: 1px solid rgb(141, 234, 249);
     border-radius: var(--radius);
     margin-bottom: 10px;
+    @media (max-width: 820px) {
+        width: 100%;
+    }
 }
 .container-button {
     display: flex;
@@ -15,18 +18,12 @@
     height: auto;
 
     .top-view {
-        width: 50%;
+        width: 100%;
         background-color: aliceblue;
         border: 1px solid var(--orangeC);
-        cursor: pointer;
     }
     .active {
         background-color: var(--orangeC);
-    }
-    .new-updated {
-        width: 50%;
-        background-color: rgb(40, 84, 123);
-        cursor: pointer;
     }
 }
 

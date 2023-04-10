@@ -29,3 +29,12 @@ export const updateComics = async (comicID, data) => await axios.put(`${API_ROOT
 export const fetchUnfinishedComic = async () => await axios.get(`${API_ROOT}/v1/comics/unfinished-comics`)
 
 export const searchComic = async (key, page) => await axios.get(`${API_ROOT}/v1/comics/search?key=${key}&page=${page}`)
+
+export const fetchGetComments = async (comicID, page) => {
+    try {
+        const res = await axios.get(`${API_ROOT}/v1/comics/comments?comicID=${comicID}&page=${page}`)
+        return res.data
+    } catch (error) {
+        console.log(error)
+    }
+}

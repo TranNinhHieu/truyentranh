@@ -1,27 +1,29 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { Fragment, useEffect, useState } from 'react'
 import classNames from 'classnames/bind'
-
+import Comic from '../Comic/Comic'
 import styles from './Search.module.scss'
-import { Helmet } from 'react-helmet-async'
 import useQuery from '~/hooks/useQuery'
+
+import { Helmet } from 'react-helmet-async'
 import { trimString } from 'src/utils/TrimString'
-import Comic from '../Comic'
-import { searchComic } from '~/ApiCall/comicsAPI'
+import { actFetchSearchComicsRq } from 'src/redux/actions'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+
 const cx = classNames.bind(styles)
 
-function Search() {
+function Search({ fetchSearchComics, listComic }) {
     let query = useQuery()
     const [searchInfo, setSearchInfo] = useState()
-    const [listComic, setListComic] = useState([])
     useEffect(() => {
         setSearchInfo(trimString(query.get('searchContent')))
-        searchComic(query.get('searchContent'), 0).then((res) => setListComic(res.data.comics))
+        fetchSearchComics(trimString(query.get('searchContent')))
     }, [query.get('searchContent')])
     return (
         <Fragment>
             <Helmet>
-                <title>{`Kết quả : ${searchInfo}`}</title>
+                <title>{`Kết quả tìm kiếm: ${searchInfo}`}</title>
             </Helmet>
             {listComic[0] ? (
                 <Fragment>
@@ -30,7 +32,9 @@ function Search() {
                         {listComic?.map((item, index) => (
                             <Fragment key={index}>
                                 <div className={cx('container')}>
-                                    <Comic item={item} />
+                                    <Link to={`/Detail?comicId=${item._id}`}>
+                                        <Comic item={item} />
+                                    </Link>
                                 </div>
                             </Fragment>
                         ))}
@@ -45,4 +49,16 @@ function Search() {
     )
 }
 
-export default Search
+const mapStateToProps = (state) => {
+    return {
+        listComic: state.comics,
+    }
+}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchSearchComics: (searchContent) => {
+            dispatch(actFetchSearchComicsRq(searchContent))
+        },
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Search)

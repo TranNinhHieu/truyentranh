@@ -1,47 +1,50 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { Fragment, useEffect, useState } from 'react'
-
 import useQuery from '~/hooks/useQuery'
 import Image from '~/components/Image'
 import classNames from 'classnames/bind'
 import styles from './Reading.module.scss'
+
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
-import { fetchFullChapter, fetchAllChapterOfComic } from '~/ApiCall/chapters'
-import { fetchDetailComic, updateComics } from '~/ApiCall/comicsAPI'
+import { addHistory } from '../../ApiCall/userAPI'
+import { getAccessToken } from 'src/utils/Authentication'
+import { connect } from 'react-redux'
+import { actFetchFullChapterRq, actFetchAllChapterOfComicRq, actFetchDetailComicRq } from '../../redux/actions'
 
 const cx = classNames.bind(styles)
 
-function Reading() {
-    const [listChapter, setListChapter] = useState([])
-    const [chapter, setChapter] = useState({})
+function Reading({ fetchFullChapter, chapter, listChapter, fetchAllChapterOfComic, fetchDetailComic, user }) {
     const [showList, setShowList] = useState(false)
     let query = useQuery()
+    const token = getAccessToken()
+    const userId = user._id
+
     useEffect(() => {
-        fetchFullChapter(query.get('comicId'), query.get('chapter')).then((res) => {
-            setChapter(res.data)
-        })
-        fetchAllChapterOfComic(query.get('comicId')).then((res) => {
-            setListChapter(res.data)
-        })
-        fetchDetailComic(query.get('comicId')).then((res) => {
-            updateComics(query.get('comicId'), { views: res.data.views + Number(1) })
-        })
+        fetchFullChapter(query.get('comicId'), query.get('chapter'))
+        fetchAllChapterOfComic(query.get('comicId'))
+        fetchDetailComic(query.get('comicId'), query.get('chapter'), userId, token)
+
+        if (token) {
+            addHistory({ chap: query.get('chapter'), comicID: query.get('comicId'), userID: user._id }, token)
+            console.log('add')
+        }
     }, [query.get('chapter'), query.get('comicId')])
+
     return (
         <>
             {chapter._id ? (
                 <div className={cx('wrapper')}>
+                    {' '}
                     <Helmet>
                         {' '}
-                        {console.log(query.get('chapter'))}
                         <title>{chapter.title + ' Chương ' + chapter.chap}</title>
                     </Helmet>
                     <div className={cx('infomation')}>
                         <div className={cx('direction')}>
-                            <Link to="/"> Trang chủ </Link>
+                            <Link to="/?page=1"> Trang chủ </Link>
                             <span>/</span>
-                            <Link to={`/detail?comicId=${listChapter[0]?.comicID}`}> {chapter.title} </Link>
+                            <Link to={`/Detail?comicId=${listChapter[0]?.comicID}`}> {chapter.title} </Link>
                             <span>/</span>
                             <span> {chapter.chap} </span>
                         </div>
@@ -51,7 +54,7 @@ function Reading() {
                         <div className={cx('button-chap')}>
                             {listChapter[0]?.chap !== chapter.chap ? (
                                 <Link
-                                    to={`/reading?comicId=${listChapter[0]?.comicID}&chapter=${chapter.chap - 1}`}
+                                    to={`/Reading?comicId=${listChapter[0]?.comicID}&chapter=${chapter.chap - 1}`}
                                     className={cx('active-button')}
                                 >
                                     Chương trước
@@ -95,11 +98,12 @@ function Reading() {
                     </div>
                     <div className={cx('image-chapter')}>
                         {chapter?.image?.map((image, index) => (
-                            <Image
-                                key={index}
-                                src={`comics/truyen${chapter.number}/chap${chapter.chap}/${image}`}
-                                alt={chapter.thumbnail}
-                            />
+                            <div className={cx('image-container')} key={index}>
+                                <Image
+                                    src={`comics/truyen${chapter.number}/chap${chapter.chap}/${image}`}
+                                    alt={chapter.thumbnail}
+                                />
+                            </div>
                         ))}
                     </div>
                 </div>
@@ -115,4 +119,26 @@ function Reading() {
     )
 }
 
-export default Reading
+const mapStateToProps = (state) => {
+    return {
+        chapter: state.chapter,
+        listChapter: state.listChapter,
+        user: state.user,
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchFullChapter: (comicID, chapter) => {
+            dispatch(actFetchFullChapterRq(comicID, chapter))
+        },
+        fetchAllChapterOfComic: (comicID) => {
+            dispatch(actFetchAllChapterOfComicRq(comicID))
+        },
+        fetchDetailComic: (comicId, chap, userId, token) => {
+            dispatch(actFetchDetailComicRq(comicId, true, chap, userId, token))
+        },
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Reading)

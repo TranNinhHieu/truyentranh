@@ -1,7 +1,7 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { Fragment, /*useEffect*/ useState } from 'react'
 
-import useQuery from '~/hooks/useQuery'
-import Image from '~/components/Image'
+// import useQuery from '~/hooks/useQuery'
+// import Image from '~/components/Image'
 
 import classNames from 'classnames/bind'
 import styles from './Register.module.scss'
@@ -19,7 +19,7 @@ function Register() {
                 <title>Register</title>
             </Helmet>
             <div className={cx('wrapper')}>
-                <div className={cx('container')}>
+                {/* <div className={cx('container')}>
                     <div className={cx('title')}>Đăng ký</div>
                     <div className={cx('user')}>
                         <div className={cx('user-title')}>Tài khoản</div>
@@ -50,12 +50,13 @@ function Register() {
                         </div>
                         <div className={cx('text')}>Xem mật khẩu</div>
                     </div>
-                    <Link to={`/login`} className={cx('login-text')}>
+                    <Link to={`/Login`} className={cx('login-text')}>
                         Đã có tài khoản
                     </Link>
                     <div className={cx('button-confirm')}>Xác nhận</div>
-                </div>
+                </div> */}{' '}
             </div>
+            Đang trong giai đoạn phát triển
         </Fragment>
     )
 }

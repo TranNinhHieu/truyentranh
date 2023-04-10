@@ -1,6 +1,5 @@
 .comic {
     &-image {
-        // background-color: rgb(193, 156, 156);
         width: 100%;
         padding-top: calc(3 / 2 * 100%);
         position: relative;
@@ -27,4 +26,7 @@
             color: rgb(239, 141, 81);
         }
     }
+}
+.wrapper {
+    width: 100%;
 }

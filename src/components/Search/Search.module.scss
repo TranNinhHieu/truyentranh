@@ -12,5 +12,14 @@
     .container {
         width: 16.25%;
         padding: 0 15px;
+        @media (max-width: 1200px) {
+            width: 20%;
+        }
+        @media (max-width: 1000px) {
+            width: 25%;
+        }
+        @media (max-width: 800px) {
+            width: 33%;
+        }
     }
 }

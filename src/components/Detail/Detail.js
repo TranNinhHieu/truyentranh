@@ -1,34 +1,29 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import classNames from 'classnames/bind'
-
 import styles from './Detail.module.scss'
-import ComicInfo from '~/components/ComicInfo/ComicInfo.js'
-import ListChapter from '~/components/ListChapter/ListChapter.js'
-
+import ComicInfo from '../ComicInfo/ComicInfo.js'
+import ListChapter from '../ListChapter/ListChapter.js'
+import ListComment from '../ListComment/ListComment'
 import useQuery from '~/hooks/useQuery'
+
 import { Helmet } from 'react-helmet-async'
-import { fetchAllChapterOfComic } from '~/ApiCall/chapters'
-import { fetchDetailComic } from '~/ApiCall/comicsAPI'
+import { connect } from 'react-redux'
+import { actFetchAllChapterOfComicRq, actFetchDetailComicRq } from './../../redux/actions'
 
 const cx = classNames.bind(styles)
 
-function Detail() {
-    const [comic, setComic] = useState({})
-    const [listChapter, setListChapter] = useState([])
+function Detail({ fetchAllChapterOfComic, listChapter, fetchDetailComic, comic }) {
     let query = useQuery()
 
     useEffect(() => {
-        fetchAllChapterOfComic(query.get('comicId')).then((res) => {
-            setListChapter(res.data)
-        })
-        fetchDetailComic(query.get('comicId')).then((res) => {
-            setComic(res.data)
-        })
+        fetchAllChapterOfComic(query.get('comicId'))
+        fetchDetailComic(query.get('comicId'))
     }, [query.get('comicId')])
 
     return (
         <>
+            {' '}
             {listChapter[0] ? (
                 <Fragment>
                     <Helmet>
@@ -41,7 +36,8 @@ function Detail() {
                             <div className={cx('description')}>{comic.description}</div>
                         </div>
                         <ListChapter listChapter={listChapter} views={comic.views} />
-                        <div></div>
+
+                        <ListComment />
                     </div>
                 </Fragment>
             ) : (
@@ -55,5 +51,20 @@ function Detail() {
         </>
     )
 }
-
-export default Detail
+const mapStateToProps = (state) => {
+    return {
+        listChapter: state.listChapter,
+        comic: state.detailComic,
+    }
+}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchAllChapterOfComic: (comicId) => {
+            dispatch(actFetchAllChapterOfComicRq(comicId))
+        },
+        fetchDetailComic: (comicId) => {
+            dispatch(actFetchDetailComicRq(comicId))
+        },
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Detail)
