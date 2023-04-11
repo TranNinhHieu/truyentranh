@@ -2,7 +2,7 @@ import axios from 'axios'
 import { getAccessToken, removeAccessToken, setAccessToken } from '~/utils/Authentication'
 
 const instance = axios.create({
-    baseURL: 'http://localhost:5000/',
+    baseURL: 'https://be-truyenh-tranh.onrender.com',
 })
 
 instance.interceptors.request.use(
